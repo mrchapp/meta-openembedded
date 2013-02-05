@@ -3,7 +3,7 @@ HOMEPAGE = "http://arago-project.org/git/projects/test-automation/ltp-ddt.git"
 SECTION = "console/utils"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=0636e73ff0215e8d672dc4c32c317bb3"
-PR = "r1"
+PR = "r2"
 
 PROVIDES += "ltp"
 DEPENDS += "zip-native virtual/kernel alsa-lib"
@@ -21,6 +21,9 @@ S = "${WORKDIR}/git"
 
 LTPROOT = "/opt/ltp"
 
+PLATFORM = "${MACHINE}"
+PLATFORM_da830-evm = "da830-omapl137-evm"
+
 EXTRA_OEMAKE_append = " \
 	prefix=${LTPROOT} \
 	CROSS_COMPILE=${HOST_PREFIX} \
@@ -29,7 +32,7 @@ EXTRA_OEMAKE_append = " \
 	KERNEL_USR_INC=${STAGING_INCDIR} \
 	ALSA_INCPATH=${STAGING_INCDIR} \
 	ALSA_LIBPATH=${STAGING_LIBDIR} \
-	PLATFORM=${MACHINE} \
+	PLATFORM=${PLATFORM} \
 "
 
 TARGET_CC_ARCH += "${LDFLAGS}"
